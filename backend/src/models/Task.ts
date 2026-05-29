@@ -1,5 +1,6 @@
 // Task.ts
 import mongoose from 'mongoose';
+import { mockDb } from '../config/mockDb';
 
 const taskSchema = new mongoose.Schema({
     user: {
@@ -33,5 +34,7 @@ const taskSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-const Task = mongoose.model('Task', taskSchema);
+const Task = (global as any).__USE_MOCK_DB__ 
+    ? mockDb.tasks as any
+    : mongoose.model('Task', taskSchema);
 export default Task;

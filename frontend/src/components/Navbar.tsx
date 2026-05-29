@@ -1,13 +1,9 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { LogOut, Sun, Moon } from 'lucide-react';
-
-// const Navbar = () => {
-//   const { user, logout } = useContext(AuthContext)!;
+import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+
 const Navbar = () => {
-  const { user, logout } = useAuth(); // Cleaner usage
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const onLogout = () => {
@@ -16,31 +12,31 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-600 dark:bg-gray-800 text-white shadow-lg">
+    <nav className="bg-slate-900/95 backdrop-blur text-white shadow-lg border-b border-white/10">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
-          TaskTracker
+          TaskFlow
         </Link>
         <div className="flex items-center gap-4">
           <ul className="flex space-x-4">
             {user ? (
               <>
                 <li>
-                  <span className="font-semibold">Hello, {user.username}</span>
+                  <span className="font-semibold">Hi, {user.username}</span>
                 </li>
                 <li>
                    <button onClick={onLogout} className="flex items-center gap-1 hover:text-gray-200">
-                      <LogOut size={18} /> Logout
+                      <LogOut size={18} /> Sign out
                    </button>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <Link to="/login" className="hover:text-gray-200">Login</Link>
+                  <Link to="/login" className="hover:text-gray-200">Log in</Link>
                 </li>
                 <li>
-                  <Link to="/register" className="hover:text-gray-200">Register</Link>
+                  <Link to="/register" className="hover:text-gray-200">Create account</Link>
                 </li>
               </>
             )}

@@ -3,8 +3,10 @@ import User from '../models/User';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'task-tracker-dev-secret';
+
 const generateToken = (id: string) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET!, {
+  return jwt.sign({ id }, JWT_SECRET, {
     expiresIn: '30d',
   });
 };

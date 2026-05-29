@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-// import AuthContext from '../context/AuthContext';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 
@@ -27,7 +27,8 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100 dark:bg-gray-900">
       <div className="card w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+        <h2 className="text-2xl font-bold mb-2 text-center">Create your account</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">A quick setup so your tasks stay in sync.</p>
         <form onSubmit={onSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Username</label>
@@ -44,7 +45,7 @@ const Register = () => {
           <button type="submit" className="w-full btn-primary">Register</button>
         </form>
         <p className="mt-4 text-center">
-          Already have an account? <a href="/login" className="text-blue-600 hover:text-blue-800">Login</a>
+          Already have an account? <Link to="/login" className="text-blue-600 hover:text-blue-800">Log in</Link>
         </p>
       </div>
     </div>

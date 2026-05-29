@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import axios from 'axios';
 
 interface User {
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (userData: any) => {
-    const res = await axios.post('http://localhost:5001/api/auth/login', userData);
+    const res = await axios.post('http://localhost:5002/api/auth/login', userData);
     if (res.data) {
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const register = async (userData: any) => {
-    const res = await axios.post('http://localhost:5001/api/auth/register', userData);
+    const res = await axios.post('http://localhost:5002/api/auth/register', userData);
     if (res.data) {
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);

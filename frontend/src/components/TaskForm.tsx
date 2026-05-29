@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface TaskFormProps {
   currentTask: any;
@@ -53,11 +53,12 @@ const TaskForm = ({ currentTask, clearCurrent, onSubmit }: TaskFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="mb-4">
-      <h2 className="text-xl font-bold mb-4">{currentTask ? 'Edit Task' : 'Add Task'}</h2>
+      <h2 className="text-xl font-bold mb-2">{currentTask ? 'Tweak the task' : 'Add a new task'}</h2>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Keep it short, clear, and easy to revisit later.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
           type="text"
-          placeholder="Task Title"
+          placeholder="What needs doing?"
           name="title"
           value={title}
           onChange={onChange}
@@ -73,7 +74,7 @@ const TaskForm = ({ currentTask, clearCurrent, onSubmit }: TaskFormProps) => {
         />
       </div>
        <textarea
-          placeholder="Description"
+         placeholder="A few details to make it easier to pick back up"
           name="description"
           value={description}
           onChange={onChange}
@@ -94,7 +95,7 @@ const TaskForm = ({ currentTask, clearCurrent, onSubmit }: TaskFormProps) => {
       </div>
       <div className="mt-4">
         <button type="submit" className="btn-primary w-full md:w-auto">
-          {currentTask ? 'Update Task' : 'Add Task'}
+          {currentTask ? 'Save changes' : 'Create task'}
         </button>
         {currentTask && (
           <button
@@ -102,7 +103,7 @@ const TaskForm = ({ currentTask, clearCurrent, onSubmit }: TaskFormProps) => {
             className="btn-secondary w-full md:w-auto ml-0 md:ml-2 mt-2 md:mt-0"
             onClick={clearAll}
           >
-            Cancel
+            Never mind
           </button>
         )}
       </div>

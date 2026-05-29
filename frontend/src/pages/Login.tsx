@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-// import AuthContext from '../context/AuthContext';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 
@@ -27,7 +27,8 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100 dark:bg-gray-900">
       <div className="card w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-2 text-center">Welcome back</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">Sign in to pick up where you left off.</p>
         <form onSubmit={onSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email</label>
@@ -40,7 +41,7 @@ const Login = () => {
           <button type="submit" className="w-full btn-primary">Login</button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account? <a href="/register" className="text-blue-600 hover:text-blue-800">Register</a>
+          New here? <Link to="/register" className="text-blue-600 hover:text-blue-800">Create an account</Link>
         </p>
       </div>
     </div>

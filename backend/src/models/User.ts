@@ -1,5 +1,6 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { mockDb } from '../config/mockDb';
 
 export interface IUser extends Document {
   username: string;
@@ -42,5 +43,7 @@ userSchema.methods.matchPassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const User: Model<IUser> = mongoose.model<IUser>('User', userSchema);
+const User: Model<IUser> = (global as any).__USE_MOCK_DB__ 
+  ? mockDb.users as any
+  : mongoose.model<IUser>('User', userSchema);
 export default User;

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Pencil, Trash2, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 
 interface Task {
@@ -17,7 +17,7 @@ interface TaskListProps {
   onToggleStatus: (task: Task) => void;
 }
 
-const TaskList = ({ tasks, onDelete, onEdit, onToggleStatus }: TaskListProps) => { // Removed extra closing parenthesis
+const TaskList: FC<TaskListProps> = ({ tasks, onDelete, onEdit, onToggleStatus }) => {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high': return 'text-red-500';
@@ -36,7 +36,7 @@ const TaskList = ({ tasks, onDelete, onEdit, onToggleStatus }: TaskListProps) =>
   };
 
   if(!tasks || tasks.length === 0) {
-      return <p className="text-center text-gray-500">No tasks found.</p>
+      return <p className="text-center text-gray-500">Nothing here yet. Add a task to get started.</p>
   }
 
   return (
@@ -57,7 +57,7 @@ const TaskList = ({ tasks, onDelete, onEdit, onToggleStatus }: TaskListProps) =>
             )}
           </div>
           <div className="flex gap-2 mt-4 md:mt-0">
-             <button onClick={() => onToggleStatus(task)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title={task.status === 'done' ? "Mark Undone" : "Mark Done"}>
+             <button onClick={() => onToggleStatus(task)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title={task.status === 'done' ? 'Move back to active' : 'Mark as finished'}>
                 <CheckCircle size={20} className={task.status === 'done' ? 'text-green-600' : 'text-gray-400'} />
              </button>
             <button onClick={() => onEdit(task)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-500">

@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import AuthContext from '../context/AuthContext';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import Analytics from '../components/Analytics';
@@ -114,6 +113,14 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="mb-8 rounded-2xl bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+        <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-2">Your work, in one place</p>
+        <h1 className="text-3xl font-bold mb-2">Welcome back, {user.username}</h1>
+        <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
+          Keep track of what’s moving, what’s stuck, and what needs a nudge. Add a task, filter the list, and stay on top of the day without the clutter.
+        </p>
+      </div>
+
       <Analytics data={analytics} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
