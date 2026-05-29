@@ -17,6 +17,7 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5002').replace(/\/$/, '');
 
 // Custom hook for easier consumption
 export const useAuth = () => {
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (userData: any) => {
-    const res = await axios.post('http://localhost:5002/api/auth/login', userData);
+    const res = await axios.post(`${API_BASE_URL}/api/auth/login`, userData);
     if (res.data) {
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);
@@ -51,7 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const register = async (userData: any) => {
-    const res = await axios.post('http://localhost:5002/api/auth/register', userData);
+    const res = await axios.post(`${API_BASE_URL}/api/auth/register`, userData);
     if (res.data) {
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);
